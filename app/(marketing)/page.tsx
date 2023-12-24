@@ -31,7 +31,7 @@ function MarketingPage() {
         <h1 className="text-3xl text-center md:text-6xl to-neutral-800 mb-6">
           Vello helps teams move
         </h1>
-        <h1 className="text-3xl  md:text-6xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-4 py-2 rounded-md pb-4 w-fit">
+        <h1 className="text-3xl  md:text-6xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-4 rounded-md py-4 w-fit">
           work forward.
         </h1>
       </div>
@@ -45,7 +45,7 @@ function MarketingPage() {
         high rises to the home office, the way your team works is unique
       </div>
       <Button asChild className="mt-6" size="lg">
-        <Link href="/register">Get Started</Link>
+        <Link href="/sign-up">Get Started</Link>
       </Button>
     </div>
   );
