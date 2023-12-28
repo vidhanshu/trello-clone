@@ -18,7 +18,8 @@ interface FormPickerProps {
 export default function FormPicker({ id, errors }: FormPickerProps) {
   const [selectedImgId, setSelectedImgId] = useState<string | null>(null);
   const [images, setImages] = useState<Array<Record<string, any>>>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { pending } = useFormStatus();
 

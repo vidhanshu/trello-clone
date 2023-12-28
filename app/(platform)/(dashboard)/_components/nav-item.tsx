@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { Activity, Layout, CreditCard, Settings } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -9,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 

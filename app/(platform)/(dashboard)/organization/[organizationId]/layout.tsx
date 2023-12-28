@@ -4,9 +4,9 @@ export default function OrganizationIdLayout({
   children,
 }: React.PropsWithChildren) {
   return (
-    <>
+    <div>
       <OrgControl />
       {children}
-    </>
+    </div>
   );
 }
