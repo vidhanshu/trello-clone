@@ -1,7 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { PropsWithChildren } from 'react';
+import { ElementRef, PropsWithChildren, useRef } from 'react';
 import { toast } from 'sonner';
 
 import {
@@ -15,6 +15,8 @@ import { createBoard } from '@/actions/create-board';
 import { FormInput } from './form-input';
 import FormSubmit from './form-submit';
 import { Button } from '@/components/ui/button';
+import FormPicker from './form-picker';
+import { useRouter } from 'next/navigation';
 
 interface FormPopoverProps extends PropsWithChildren {
   side?: 'left' | 'right' | 'top' | 'bottom';
@@ -27,9 +29,13 @@ const FormPopover = ({
   align,
   sideOffset,
 }: FormPopoverProps) => {
+  const router = useRouter();
+  const closeRef = useRef<ElementRef<'button'>>(null);
   const { execute, fieldErrors } = useAction(createBoard, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success('Board created successfully');
+      closeRef.current?.click();
+      router.push(`/board/${data.id}`);
     },
     onError: (error) => {
       toast.error(error);
@@ -38,7 +44,8 @@ const FormPopover = ({
 
   const onSubmit = (formData: FormData) => {
     const title = formData.get('title') as string;
-    execute({ title });
+    const image = formData.get('image') as string;
+    execute({ title, image });
   };
 
   return (
@@ -53,7 +60,7 @@ const FormPopover = ({
         <div className="text-sm font-medium text-center text-neutral-600 pb-4">
           Create Board
         </div>
-        <PopoverClose asChild>
+        <PopoverClose ref={closeRef} asChild>
           <Button
             className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600"
             variant="ghost"
@@ -63,6 +70,7 @@ const FormPopover = ({
         </PopoverClose>
         <form action={onSubmit} className="space-y-4">
           <div className="space-y-4">
+            <FormPicker id="image" errors={fieldErrors} />
             <FormInput
               errors={fieldErrors}
               id="title"

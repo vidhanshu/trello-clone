@@ -10,6 +10,7 @@ export default function FormSubmit({
   children,
   disabled,
   className,
+  variant = 'primary',
   ...props
 }: FormSubmitProps) {
   const { pending } = useFormStatus();
@@ -17,6 +18,7 @@ export default function FormSubmit({
     <Button
       disabled={pending || disabled}
       className={cn('', className)}
+      variant={variant}
       {...props}
     >
       {children}
